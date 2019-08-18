@@ -9,7 +9,7 @@ const kildekart = "polygon_med_undertyper.4326.geojson";
 log.info(pjson.name + " v" + pjson.version + ": " + pjson.description);
 if (!fs.existsSync(kildekart))
   return log.error("Mangler kildefil " + kildekart);
-walkSync(".");
+walkSync("./");
 
 function walkSync(dir) {
   lagSubkart(dir);
