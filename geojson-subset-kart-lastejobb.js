@@ -38,6 +38,7 @@ function lagSubkart(dir) {
       subkart.features.push(f);
     }
   });
+  if (subkart.features.length <= 0) log.warn("Tomt kart for " + dir);
   const kartpath = path.join(dir + "polygon.4326.geojson");
   log.info("Skriver " + kartpath);
   io.writeJson(kartpath, subkart);
