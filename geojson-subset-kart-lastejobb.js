@@ -34,14 +34,14 @@ function lagSubkart(dir) {
   allFeatures.forEach(f => {
     const kode = finnKode(meta, f.properties.kode);
     if (kode) {
-      f.kode = kode;
+      f.properties.kode = kode;
       subkart.features.push(f);
     }
   });
   if (subkart.features.length <= 0) log.warn("Tomt kart for " + dir);
   const kartpath = path.join(dir + "polygon.4326.geojson");
   log.info("Skriver " + kartpath);
-  io.writeJson(kartpath, subkart);
+  fs.writeFileSync(kartpath, JSON.stringify(subkart));
 }
 
 function finnKode(meta, kode) {
