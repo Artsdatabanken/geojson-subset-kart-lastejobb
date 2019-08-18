@@ -32,7 +32,7 @@ function lagSubkart(dir) {
   const allFeatures = subkart.features;
   subkart.features = [];
   allFeatures.forEach(f => {
-    const kode = finnKode(meta, f.kode);
+    const kode = finnKode(meta, f.properties.kode);
     if (kode) {
       f.kode = kode;
       subkart.features.push(f);
@@ -44,6 +44,8 @@ function lagSubkart(dir) {
 }
 
 function finnKode(meta, kode) {
+  if (!kode)
+    return log.error("Mangler property kode på feature i " + kildekart);
   for (var barn of meta.barn)
     if (kode.indexOf(barn.kode) === 0) return barn.kode;
   if (kode.indexOf(meta.kode) === 0) return meta.kode;
