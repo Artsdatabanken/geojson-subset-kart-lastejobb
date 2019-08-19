@@ -32,9 +32,9 @@ function lagSubkart(dir) {
   const allFeatures = subkart.features;
   subkart.features = [];
   allFeatures.forEach(f => {
-    const kode = finnKode(meta, f.properties.code);
-    if (kode) {
-      f.properties.kode = kode;
+    const code = finnKode(meta, f.properties.code);
+    if (code) {
+      f.properties.code = code;
       subkart.features.push(f);
     }
   });
@@ -44,11 +44,11 @@ function lagSubkart(dir) {
   fs.writeFileSync(kartpath, JSON.stringify(subkart));
 }
 
-function finnKode(meta, kode) {
-  if (!kode)
-    return log.error("Mangler property kode på feature i " + kildekart);
+function finnKode(meta, code) {
+  if (!code)
+    throw new Error("Required property code is missing in " + kildekart);
   for (var barn of meta.barn)
-    if (kode.indexOf(barn.kode) === 0) return barn.kode;
-  if (kode.indexOf(meta.kode) === 0) return meta.kode;
+    if (code.indexOf(barn.kode) === 0) return barn.kode;
+  if (code.indexOf(meta.kode) === 0) return meta.kode;
   return null;
 }
