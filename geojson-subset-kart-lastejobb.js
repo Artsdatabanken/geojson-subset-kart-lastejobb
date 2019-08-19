@@ -18,9 +18,9 @@ log.info("Nesting levels: " + levels);
 walkSync("./", levels);
 
 function walkSync(dir, level) {
-  if (level === 0) return;
   log.info(dir);
   lagSubkart(dir);
+  if (level === 0) return;
   let files = fs.readdirSync(dir);
   files.forEach(function(file) {
     const sub = path.join(dir, file);
