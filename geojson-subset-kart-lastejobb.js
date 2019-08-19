@@ -12,7 +12,7 @@ log.info("Kildekart: " + kildekart);
 if (!fs.existsSync(kildekart))
   return log.error("Mangler kildefil " + kildekart);
 let levels = 99;
-if (process.argv.length > 2) levels = parseInt(process.argv[2]);
+if (process.argv.length > 2) levels = parseInt(process.argv[3]);
 log.info("Nesting levels: " + levels);
 
 walkSync("./", levels);
