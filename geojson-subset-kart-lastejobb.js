@@ -11,15 +11,19 @@ if (process.argv.length > 1) kildekart = process.argv[2];
 log.info("Kildekart: " + kildekart);
 if (!fs.existsSync(kildekart))
   return log.error("Mangler kildefil " + kildekart);
-walkSync("./");
+let levels = 99;
+if (process.argv.length > 2) levels = parseInt(process.argv[2]);
 
-function walkSync(dir) {
+walkSync("./", levels);
+
+function walkSync(dir, level) {
   lagSubkart(dir);
+  if (level === 0) return;
   let files = fs.readdirSync(dir);
   files.forEach(function(file) {
     const sub = path.join(dir, file);
     if (fs.statSync(sub).isDirectory()) {
-      filelist = walkSync(sub + "/");
+      filelist = walkSync(sub + "/", level - 1);
     }
   });
 }
