@@ -4,9 +4,11 @@ const path = require("path");
 const { io, log } = require("lastejobb");
 const pjson = require("./package");
 
-const kildekart = "polygon_med_undertyper.4326.geojson";
-
 log.info(pjson.name + " v" + pjson.version + ": " + pjson.description);
+
+let kildekart = "polygon_med_undertyper.4326.geojson";
+if (process.argv.length > 1) kildekart = process.argv[2];
+log.info("Kildekart: " + kildekart);
 if (!fs.existsSync(kildekart))
   return log.error("Mangler kildefil " + kildekart);
 walkSync("./");
