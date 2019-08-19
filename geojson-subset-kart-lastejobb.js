@@ -32,7 +32,7 @@ function lagSubkart(dir) {
   const allFeatures = subkart.features;
   subkart.features = [];
   allFeatures.forEach(f => {
-    const kode = finnKode(meta, f.properties.kode);
+    const kode = finnKode(meta, f.properties.code);
     if (kode) {
       f.properties.kode = kode;
       subkart.features.push(f);
