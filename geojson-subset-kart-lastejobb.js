@@ -13,12 +13,14 @@ if (!fs.existsSync(kildekart))
   return log.error("Mangler kildefil " + kildekart);
 let levels = 99;
 if (process.argv.length > 2) levels = parseInt(process.argv[2]);
+log.info("Nesting levels: " + levels);
 
 walkSync("./", levels);
 
 function walkSync(dir, level) {
-  lagSubkart(dir);
   if (level === 0) return;
+  log.info(dir);
+  lagSubkart(dir);
   let files = fs.readdirSync(dir);
   files.forEach(function(file) {
     const sub = path.join(dir, file);
