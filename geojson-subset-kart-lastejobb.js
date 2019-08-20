@@ -15,6 +15,10 @@ let levels = 99;
 if (process.argv.length > 2) levels = parseInt(process.argv[3]);
 log.info("Nesting levels: " + levels);
 
+const subkart = io.readJson(kildekart);
+const features = subkart.features;
+delete subkart.features;
+
 walkSync("./", levels);
 
 function walkSync(dir, level) {
@@ -36,10 +40,8 @@ function lagSubkart(dir) {
     return log.warn("Mangler metadata.json i " + metapath);
   const meta = io.readJson(metapath);
   log.info("Leser " + metapath);
-  const subkart = io.readJson(kildekart);
-  const allFeatures = subkart.features;
   subkart.features = [];
-  allFeatures.forEach(f => {
+  features.forEach(f => {
     const code = finnKode(meta, f.properties.code);
     if (code) {
       f.properties.code = code;
