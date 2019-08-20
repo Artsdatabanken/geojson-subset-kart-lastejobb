@@ -7,17 +7,16 @@ const pjson = require("./package");
 log.info(pjson.name + " v" + pjson.version + ": " + pjson.description);
 
 let kildekart = "polygon_med_undertyper.4326.geojson";
-if (process.argv.length > 1) kildekart = process.argv[2];
+if (process.argv.length > 2) kildekart = process.argv[2];
 log.info("Kildekart: " + kildekart);
 if (!fs.existsSync(kildekart))
   return log.error("Mangler kildefil " + kildekart);
 let levels = 99;
-if (process.argv.length > 2) levels = parseInt(process.argv[3]);
+if (process.argv.length > 3) levels = parseInt(process.argv[3]);
 log.info("Nesting levels: " + levels);
 
 const subkart = io.readJson(kildekart);
 const features = subkart.features;
-delete subkart.features;
 
 walkSync("./", levels);
 
@@ -44,11 +43,13 @@ function lagSubkart(dir) {
   features.forEach(f => {
     const code = finnKode(meta, f.properties.code);
     if (code) {
-      f.properties.code = code;
-      subkart.features.push(f);
+      const f2 = JSON.parse(JSON.stringify(f));
+      f2.properties.code = code;
+      subkart.features.push(f2);
     }
   });
-  if (subkart.features.length <= 0) log.warn("Tomt kart for " + dir);
+  if (subkart.features.length <= 0) return log.warn("Tomt kart for " + dir);
+
   const kartpath = path.join(dir + "polygon.4326.geojson");
   log.info("Skriver " + kartpath);
   fs.writeFileSync(kartpath, JSON.stringify(subkart));
