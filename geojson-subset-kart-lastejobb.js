@@ -60,6 +60,6 @@ function finnKode(meta, code) {
     throw new Error("Required property code is missing in " + kildekart);
   for (var barn of meta.barn)
     if (code.indexOf(barn.kode) === 0) return barn.kode;
-  if (code.indexOf(meta.kode) === 0) return meta.kode;
+  if (meta.barn.length <= 0 && code.indexOf(meta.kode) === 0) return meta.kode;
   return null;
 }
