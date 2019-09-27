@@ -8,7 +8,8 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/geojson-subset-kart-lastejobb.js"
+      "program": "${workspaceFolder}/geojson-subset-kart-lastejobb.js",
+      "cwd": "/home/b/temp/kommune"
     }
   ]
 }

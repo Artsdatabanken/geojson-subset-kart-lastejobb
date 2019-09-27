@@ -41,12 +41,14 @@ function lagSubkart(dir) {
   log.info("Leser " + metapath);
   subkart.features = [];
   features.forEach(f => {
-    const code = finnKode(meta, f.properties.code);
-    if (code) {
-      const f2 = JSON.parse(JSON.stringify(f));
-      f2.properties.code = code;
-      subkart.features.push(f2);
-    }
+    let code = finnKode(meta, f.properties.code);
+    if (!code) return;
+
+    const f2 = JSON.parse(JSON.stringify(f));
+    const props = f2.properties;
+    props.code = code;
+    props.kode = code.split("-").pop();
+    subkart.features.push(f2);
   });
   if (subkart.features.length <= 0) return log.warn("Tomt kart for " + dir);
 
