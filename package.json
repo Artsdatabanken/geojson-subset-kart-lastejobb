@@ -11,6 +11,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "lastejobb": "^2.7.3"
+    "lastejobb": "^2.16.1"
   }
 }
