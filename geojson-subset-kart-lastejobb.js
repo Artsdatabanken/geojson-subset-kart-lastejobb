@@ -49,6 +49,7 @@ function lagSubkart(dir) {
     const f2 = JSON.parse(JSON.stringify(f));
     const props = f2.properties;
     props.kode = code.split("-").pop();
+    props.code = props.kode; // Deprecated
     subkart.features.push(f2);
   });
   if (subkart.features.length <= 0) return log.warn("Tomt kart for " + dir);

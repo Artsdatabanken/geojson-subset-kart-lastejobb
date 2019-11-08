@@ -22,4 +22,8 @@ Gir en `polygon.4326.geojson` kartfil i hver underkatalog med de geometrier som 
 
 ## Dissolve
 
-ogr2ogr polygon.4326.geojson polygon_no_dissolve.4326.geojson -dialect sqlite -sql "SELECT ST_Union(geometry), kode FROM myr GROUP BY kode"
+Performed by make-mbtiles.sh script (where?):
+
+```
+find -type f -name polygon_no_dissolve.4326.geojson -exec ogr2ogr polygon.4326.geojson polygon_no_dissolve.4326.geojson -dialect sqlite -sql "SELECT ST_Union(geometry), kode FROM myr GROUP BY kode" \;
+```
