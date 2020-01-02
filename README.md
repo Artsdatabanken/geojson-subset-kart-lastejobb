@@ -13,7 +13,7 @@ Avhengig av kildekartet inneholder en property med navn `kode` på hver GeoJSON 
 
 ```
 cd katalog
-npx geojson-subset-kart-lastejobb
+npx geojson-subset-kart-lastejobb kommune.4326.geojson
 ```
 
 ## Resultat
