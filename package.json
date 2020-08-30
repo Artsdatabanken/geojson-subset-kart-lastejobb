@@ -1,6 +1,6 @@
 {
   "name": "geojson-subset-kart-lastejobb",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "description": "Bryter ned hovedkart i biter",
   "main": "index.js",
   "bin": "./geojson-subset-kart-lastejobb.js",
@@ -11,6 +11,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "lastejobb": "^2.18.1"
+    "lastejobb": "^3.6.0"
   }
 }
