@@ -37,11 +37,9 @@ function makeMap(meta, targetDir) {
     if (!props) log.warn("Invalid feature: '" + Object.keys(feature) + '"')
     let koder = props.kode || props.koder;
     if (!Array.isArray(koder)) koder = [koder];
-    let kode = finnKode(meta, koder);
-    if (!kode) return;
-
-    props.kode = kode.split("-").pop();
-    subkart.features.push(feature);
+    props.kode = finnKode(meta, koder);
+    if (props.kode)
+      subkart.features.push(feature);
   });
 
   readInterface.on('close', function () {
